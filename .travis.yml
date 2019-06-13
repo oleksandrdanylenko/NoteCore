@@ -5,5 +5,5 @@ dotnet: 2.1
 install:
 - dotnet restore
 script:
-- dotnet build NotesCore/NotesCore.sln
+- dotnet build NotesCore/NotesCore.csproj
 - dotnet test NoteTests/NoteTests.csproj
