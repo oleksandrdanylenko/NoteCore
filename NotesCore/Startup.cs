@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace NotesCore
@@ -25,10 +26,22 @@ namespace NotesCore
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "./clientapp";
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                }
+            });
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
             });
+
+            
         }
     }
 }

@@ -7,3 +7,4 @@ install:
 script:
 - dotnet build NotesCore/NotesCore.csproj
 - dotnet test NoteTests/NoteTests.csproj
+- npm run build NotesCore/clientapp
